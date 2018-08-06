@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace就是接口的名字，全类名 -->
+<mapper namespace="com.bscc.mapper.GoodsMapper">
+	<resultMap id="getSelf" type="com.bscc.beans.GoodsCategoryVo">
+		<id column="goodscateid" property="goodscateid"></id>
+		<result column="name" property="name"></result>
+		<collection property="catelist" select="getCategory"
+			column="goodscateid"></collection>
+		<!--查到的cid作为下次的pid -->
+	</resultMap>
+
+	<select id="getCategory" resultMap="getSelf">
+		select * from goods_category where  parentid=#{pid}
+		ORDER BY displayorder,goodscateid
+	</select>
+</mapper>
+	
+	

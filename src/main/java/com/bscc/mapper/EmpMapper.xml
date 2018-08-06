@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!-- namespace就是接口的名字，全类名 -->
+<mapper namespace="com.bscc.mapper.EmpMapper">
+ <resultMap  id="EmpResultMap" type="com.bscc.beans.Emp">
+   <id property="id" column="id"/>
+   <result property="name" column="name"/>
+ </resultMap>
+ <select id="getEmpByDeptId" parameterType="Integer" resultMap="EmpResultMap">
+   select * from tbl_emp where deptId=#{deptId}
+ </select>
+</mapper>
+
+	
+	
